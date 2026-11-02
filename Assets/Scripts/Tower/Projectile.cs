@@ -20,6 +20,16 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            Enemy enemy = collision.GetComponent<Enemy>();
+            enemy.TakeDamage(_data.damage);
+            gameObject.SetActive(false);
+        }
+    }
+
     public void Shoot(TowerData data, Vector3 shootDirection)
     {
         _data = data;
